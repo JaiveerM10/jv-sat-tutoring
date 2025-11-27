@@ -2,145 +2,1041 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>JV SAT Tutoring</title>
+  <title>AscendSAT · Online SAT Tutoring</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="AscendSAT offers 1:1 online SAT tutoring with a 1500+ scoring tutor. Strategy-first prep, custom worksheets, and data-driven score gains.">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    body { background: #0f172a; color: #e5e7eb; line-height: 1.6; }
-    header { padding: 2.5rem 1.5rem; max-width: 900px; margin: 0 auto; }
-    .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px; border: 1px solid #38bdf8; font-size: 0.8rem; color: #7dd3fc; margin-bottom: 0.75rem; }
-    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    h1 span { color: #38bdf8; }
-    .sub { color: #9ca3af; max-width: 550px; margin-bottom: 1.5rem; }
-    .stats { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
-    .stat { padding: 0.75rem 1rem; border-radius: 0.75rem; background: #020617; border: 1px solid #1f2937; font-size: 0.9rem; }
-    .stat strong { display: block; font-size: 1.1rem; color: #e5e7eb; }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
-    .btn-primary, .btn-ghost { padding: 0.7rem 1.4rem; border-radius: 999px; font-size: 0.95rem; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
-    .btn-primary { background: #38bdf8; color: #0f172a; font-weight: 600; }
-    .btn-primary:hover { background: #0ea5e9; }
-    .btn-ghost { border: 1px solid #4b5563; color: #e5e7eb; background: transparent; }
-    .btn-ghost:hover { background: #020617; }
-    main { max-width: 900px; margin: 0 auto 3rem; padding: 0 1.5rem 2rem; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr); gap: 2.5rem; }
-    section { background: #020617; border-radius: 1rem; border: 1px solid #1f2937; padding: 1.5rem 1.75rem; }
-    section h2 { font-size: 1.25rem; margin-bottom: 0.75rem; }
-    section p { font-size: 0.95rem; color: #9ca3af; margin-bottom: 0.75rem; }
-    ul { list-style: none; font-size: 0.95rem; color: #d1d5db; }
-    li + li { margin-top: 0.4rem; }
-    .pill { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 999px; background: #111827; border: 1px solid #1f2937; font-size: 0.8rem; margin-right: 0.35rem; margin-bottom: 0.3rem; }
-    form { display: grid; gap: 0.75rem; margin-top: 0.75rem; }
-    label { font-size: 0.85rem; color: #9ca3af; }
-    input, textarea { width: 100%; padding: 0.5rem 0.6rem; border-radius: 0.5rem; border: 1px solid #374151; background: #020617; color: #e5e7eb; font-size: 0.9rem; }
-    input:focus, textarea:focus { outline: 1px solid #38bdf8; border-color: #38bdf8; }
-    textarea { min-height: 90px; resize: vertical; }
-    footer { text-align: center; font-size: 0.8rem; color: #6b7280; padding-bottom: 2rem; }
-    @media (max-width: 768px) { 
-      main { grid-template-columns: 1fr; }
-      header { padding-top: 1.75rem; }
-      h1 { font-size: 2rem; }
+    :root {
+      --bg: #020617;
+      --bg-alt: #020617;
+      --card: #020617;
+      --card-alt: #030712;
+      --border: #1f2937;
+      --border-soft: #111827;
+      --accent: #38bdf8;
+      --accent-soft: #0ea5e9;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --text-soft: #6b7280;
+      --danger: #f97373;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body {
+      background: radial-gradient(circle at top, #0b1120 0, #020617 55%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* Layout */
+    .wrapper {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(16px);
+      background: rgba(15, 23, 42, 0.92);
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+    }
+    .nav-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--accent);
+      background: radial-gradient(circle at top, #0f172a 0, #020617 60%);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+    }
+    .brand-text-main {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 1.05rem;
+    }
+    .brand-text-sub {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+    }
+    nav ul {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    nav a {
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+    nav a:hover {
+      color: var(--text-main);
+      border-color: var(--accent-soft);
+    }
+    .nav-cta {
+      display: none;
+    }
+
+    /* Buttons */
+    .btn, .btn-outline {
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn {
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #0f172a;
+      box-shadow: 0 12px 40px rgba(56, 189, 248, 0.32);
+    }
+    .btn:hover {
+      filter: brightness(1.03);
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent-soft);
+      background: #020617;
+    }
+
+    /* Hero */
+    .hero {
+      padding-top: 2.5rem;
+      padding-bottom: 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.7);
+      color: #7dd3fc;
+      font-size: 0.8rem;
+      margin-bottom: 0.8rem;
+      background: rgba(15, 23, 42, 0.95);
+    }
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.7);
+    }
+    h1 {
+      font-size: clamp(2.3rem, 3vw, 2.9rem);
+      margin-bottom: 0.7rem;
+    }
+    h1 span {
+      color: var(--accent);
+    }
+    .hero-sub {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      max-width: 520px;
+      margin-bottom: 1.4rem;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-footnote {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.18rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid #1f2937;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+    }
+
+    /* Hero Card */
+    .hero-card {
+      background: radial-gradient(circle at top, #0b1120 0, #020617 55%);
+      border-radius: 1.25rem;
+      padding: 1.4rem 1.4rem 1.2rem;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      box-shadow: 0 28px 60px rgba(15, 23, 42, 0.9);
+    }
+    .hero-card-title {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .hero-card-sub {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-bottom: 0.9rem;
+    }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+    }
+    .metric-card {
+      padding: 0.6rem 0.75rem;
+      border-radius: 0.9rem;
+      background: #020617;
+      border: 1px solid var(--border-soft);
+      font-size: 0.78rem;
+    }
+    .metric-label {
+      color: var(--text-soft);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .metric-value {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .metric-tag {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+    .hero-card-list {
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+    }
+    .hero-card-list li + li {
+      margin-top: 0.25rem;
+    }
+    .hero-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .hero-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: #020617;
+    }
+    .hero-tutor {
+      font-size: 0.75rem;
+    }
+    .hero-tutor span {
+      display: block;
+      color: var(--text-soft);
+      font-size: 0.72rem;
+    }
+
+    /* Sections */
+    section {
+      margin-top: 2.6rem;
+    }
+    section h2 {
+      font-size: 1.35rem;
+      margin-bottom: 0.75rem;
+    }
+    section p {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.5fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    /* Steps */
+    .steps {
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 0.9rem;
+    }
+    .step {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      background: var(--card-alt);
+      border-radius: 0.9rem;
+      border: 1px solid var(--border-soft);
+      padding: 0.85rem 0.9rem;
+      font-size: 0.85rem;
+    }
+    .step-number {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--accent);
+      margin-top: 0.15rem;
+    }
+    .step-title {
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+    .step-body {
+      color: var(--text-muted);
+    }
+
+    /* Packages */
+    .package-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.1rem;
+    }
+    .package {
+      background: var(--card-alt);
+      border-radius: 1rem;
+      border: 1px solid var(--border-soft);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      font-size: 0.9rem;
+    }
+    .package.highlight {
+      border-color: var(--accent-soft);
+      box-shadow: 0 20px 60px rgba(56, 189, 248, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+    .package.highlight::before {
+      content: "Most Popular";
+      position: absolute;
+      top: 0.5rem;
+      right: 0.7rem;
+      font-size: 0.65rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.8);
+      color: #7dd3fc;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .package-title {
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+    .package-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .package-sub {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+    .package ul {
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+    .package ul li + li {
+      margin-top: 0.25rem;
+    }
+    .package-cta {
+      margin-top: auto;
+    }
+    .small-note {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      margin-top: 0.35rem;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .testimonial {
+      background: var(--card-alt);
+      border-radius: 1rem;
+      border: 1px solid var(--border-soft);
+      padding: 0.9rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .testimonial-quote {
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--text-main);
+      font-size: 0.78rem;
+    }
+    .testimonial-tag {
+      font-size: 0.72rem;
+      color: var(--text-soft);
+    }
+
+    /* FAQ */
+    .faq-grid {
+      display: grid;
+      gap: 0.6rem;
+      margin-top: 0.9rem;
+    }
+    .faq-item {
+      background: var(--card-alt);
+      border-radius: 0.9rem;
+      border: 1px solid var(--border-soft);
+      padding: 0.8rem 0.9rem;
+      font-size: 0.85rem;
+    }
+    .faq-q {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .faq-a {
+      color: var(--text-muted);
+    }
+
+    /* Contact / Form */
+    .contact-card {
+      background: var(--card-alt);
+      border-radius: 1.1rem;
+      border: 1px solid var(--border-soft);
+      padding: 1.1rem 1.15rem;
+    }
+    form {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.7rem;
+      font-size: 0.85rem;
+    }
+    label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.1rem;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.5rem 0.55rem;
+      border-radius: 0.55rem;
+      border: 1px solid #374151;
+      background: #020617;
+      color: var(--text-main);
+      font-size: 0.85rem;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: 1px solid var(--accent-soft);
+      border-color: var(--accent-soft);
+    }
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    /* Resources */
+    .resource-list {
+      display: grid;
+      gap: 0.6rem;
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+    }
+    .resource-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-alt);
+      border-radius: 0.9rem;
+      border: 1px solid var(--border-soft);
+      padding: 0.7rem 0.8rem;
+    }
+    .resource-left {
+      max-width: 70%;
+    }
+    .resource-title {
+      font-weight: 500;
+      font-size: 0.88rem;
+    }
+    .resource-tag {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 1.1rem 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-top: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .hero-card {
+        order: -1;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .package-grid {
+        grid-template-columns: 1fr;
+      }
+      .testimonials {
+        grid-template-columns: 1fr;
+      }
+      .nav-inner {
+        flex-wrap: wrap;
+      }
+      nav {
+        display: none;
+      }
+      .nav-cta {
+        display: inline-flex;
+      }
+    }
+    @media (max-width: 480px) {
+      .wrapper {
+        padding-inline: 1.1rem;
+      }
+      .hero {
+        padding-top: 2rem;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- NAVBAR -->
   <header>
-    <div class="badge">1:1 Online SAT Tutoring · Math & Reading</div>
-    <h1>JV <span>SAT Tutoring</span></h1>
-    <p class="sub">
-      Personalized SAT prep with a current high-scoring student tutor (1530 overall, 800 Math). 
-      I help you build test-taking confidence, strategy, and score gains using targeted practice — not endless homework.
-    </p>
-    <div class="stats">
-      <div class="stat">
-        <strong>1530 SAT</strong>
-        800 Math · 730+ Reading/Writing
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-logo">A↑</div>
+        <div>
+          <div class="brand-text-main">AscendSAT</div>
+          <div class="brand-text-sub">Online SAT Tutoring</div>
+        </div>
       </div>
-      <div class="stat">
-        <strong>Online 1:1</strong>
-        Zoom or Google Meet · Screen sharing
-      </div>
-      <div class="stat">
-        <strong>Custom Materials</strong>
-        Curated & level-sorted worksheets + homework
-      </div>
-    </div>
-    <div class="cta-row">
-      <a href="#contact" class="btn-primary">Book a free 20-min consult</a>
-      <a href="#packages" class="btn-ghost">View packages & pricing</a>
+      <nav>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#packages">Packages</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="#contact" class="btn nav-cta">Free consult</a>
     </div>
   </header>
 
-  <main>
-    <section id="about">
-      <h2>How I tutor</h2>
-      <p>
-        Every student starts with a short diagnostic so I can see how you think through questions.
-        From there, I create a focused plan that targets the biggest score wins first: timing,
-        elimination strategies, and fixing your most common mistake patterns.
-      </p>
-      <ul>
-        <li>• Live walkthroughs of real DSAT-style questions</li>
-        <li>• Strategy for each question type (not just content review)</li>
-        <li>• Homework sets sorted by difficulty: easy, medium, hard</li>
-        <li>• Score tracking so you can see your progress week to week</li>
-      </ul>
+  <div class="wrapper">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div>
+        <div class="badge">
+          <span class="badge-dot"></span>
+          1:1 Live DSAT Tutoring · Online
+        </div>
+        <h1>AscendSAT: <span>Score-Driven SAT Coaching</span></h1>
+        <p class="hero-sub">
+          Get personalized SAT prep with a current high-scoring tutor (1530+ overall, 800 Math).
+          We focus on strategy, patterns, and targeted practice — not just grinding random problems.
+        </p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn">Book a free 20-min consult</a>
+          <a href="#packages" class="btn-outline">View packages & pricing</a>
+        </div>
+        <div class="hero-footnote">
+          Specializing in:
+          <div class="pill-row">
+            <div class="pill"><span class="pill-dot"></span> Algebra & word problems</div>
+            <div class="pill"><span class="pill-dot"></span> Advanced math</div>
+            <div class="pill"><span class="pill-dot"></span> Reading strategies</div>
+            <div class="pill"><span class="pill-dot"></span> Grammar & punctuation</div>
+          </div>
+        </div>
+      </div>
 
-      <h2 id="packages" style="margin-top:1.5rem;">Packages & pricing</h2>
-      <p>All sessions are online and 1:1. First 20-minute consult is free.</p>
-      <ul>
-        <li><strong>Single session:</strong> 1 hour – $XX</li>
-        <li><strong>Starter bundle:</strong> 4 hours – $XX (save a bit)</li>
-        <li><strong>Intensive bundle:</strong> 10 hours – $XX (best for big jumps)</li>
-      </ul>
-      <p style="margin-top:0.75rem; font-size:0.9rem; color:#9ca3af;">
-        Focus options: Math-only · Reading/Writing-only · Split sessions.
-      </p>
+      <aside class="hero-card">
+        <div class="hero-card-title">Snapshot</div>
+        <div class="hero-card-sub">Quick stats about AscendSAT tutoring.</div>
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <div class="metric-label">Tutor score</div>
+            <div class="metric-value">1530</div>
+            <div class="metric-tag">800 Math · 730+ R/W</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Format</div>
+            <div class="metric-value">1:1 Online</div>
+            <div class="metric-tag">Zoom · shared screen · custom notes</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Focus</div>
+            <div class="metric-value">Strategy-first</div>
+            <div class="metric-tag">Mistake patterns · timing · confidence</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Materials</div>
+            <div class="metric-value">Custom</div>
+            <div class="metric-tag">Easy → Medium → Hard sets</div>
+          </div>
+        </div>
+        <ul class="hero-card-list">
+          <li>• Short diagnostic in the first session to see how you think.</li>
+          <li>• Homework tailored to your biggest score gains.</li>
+          <li>• Progress tracking so you can see how you’re improving over time.</li>
+        </ul>
+        <div class="hero-card-footer">
+          <div style="display:flex;align-items:center;gap:0.55rem;">
+            <div class="hero-avatar"></div>
+            <div class="hero-tutor">
+              Your tutor: JV
+              <span>High school junior · 1530 SAT · loves math & econ</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn-outline" style="font-size:0.78rem;padding-inline:0.9rem;">
+            Get started
+          </a>
+        </div>
+      </aside>
     </section>
 
-    <section id="contact">
-      <h2>Contact & booking</h2>
-      <p>Fill this out and I'll email you back within 24 hours with times and next steps.</p>
-      <form>
+    <!-- HOW IT WORKS -->
+    <section id="how">
+      <div class="grid-2">
         <div>
-          <label for="name">Student name</label>
-          <input id="name" type="text" placeholder="Alex Lee" />
-        </div>
-        <div>
-          <label for="email">Parent or student email</label>
-          <input id="email" type="email" placeholder="you@example.com" />
-        </div>
-        <div>
-          <label for="grade">Current grade & target score</label>
-          <input id="grade" type="text" placeholder="10th grade, aiming for 1400 → 1500" />
-        </div>
-        <div>
-          <label for="details">Anything I should know? (test date, strengths, struggles, etc.)</label>
-          <textarea id="details" placeholder="Struggle with word problems and time pressure on Reading..."></textarea>
-        </div>
-        <button type="submit" class="btn-primary">Submit (form placeholder)</button>
-        <p style="font-size:0.8rem; color:#6b7280; margin-top:0.5rem;">
-          For now, this button can just open an email to you (e.g., mailto:youremail@example.com) until you connect a real form.
-        </p>
-      </form>
+          <h2>How AscendSAT works</h2>
+          <p>
+            We keep things simple and focused. No generic curriculum, no giant group classes —
+            just targeted 1:1 coaching designed around how you think and where you can gain
+            points the fastest.
+          </p>
 
-      <h2 style="margin-top:1.5rem;">What we can work on</h2>
-      <div>
-        <span class="pill">Algebra & functions</span>
-        <span class="pill">Word problems</span>
-        <span class="pill">Data & graphs</span>
-        <span class="pill">Advanced math</span>
-        <span class="pill">Reading strategies</span>
-        <span class="pill">Grammar & punctuation</span>
-        <span class="pill">Timing & pacing</span>
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div>
+                <div class="step-title">Free consult & goal setting</div>
+                <div class="step-body">
+                  We hop on a quick 20-minute call with the student (and parent if they want),
+                  talk through current scores, test date, and target goal, and answer questions.
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <div>
+                <div class="step-title">Diagnostic & custom plan</div>
+                <div class="step-body">
+                  In the first full session, we work through a short set of problems to identify
+                  strengths and weaknesses. You’ll get a plan of attack by section and topic.
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <div>
+                <div class="step-title">Weekly 1:1 sessions + homework</div>
+                <div class="step-body">
+                  Sessions focus on strategy and explanation, not just getting the answer.
+                  You’ll also receive carefully selected homework sets with easy, medium,
+                  and hard problems — plus an answer key and breakdown.
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">4</div>
+              <div>
+                <div class="step-title">Measure progress and adjust</div>
+                <div class="step-body">
+                  We track your scores on practice sets and official tests, then adjust the
+                  focus as you improve. The goal is steady, predictable score gains — not last-minute cramming.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resources / worksheets placeholder -->
+        <div>
+          <h2>Practice sets & worksheets</h2>
+          <p>
+            AscendSAT uses curated and custom-made worksheets grouped by topic and difficulty,
+            so students build confidence before tackling the hardest DSAT-style questions.
+          </p>
+
+          <div class="resource-list">
+            <div class="resource-item">
+              <div class="resource-left">
+                <div class="resource-title">Linear equations & systems (Easy → Hard)</div>
+                <div class="resource-tag">Math · Algebra · Good for 500–650+ range</div>
+              </div>
+              <a href="#" class="btn-outline" style="font-size:0.75rem;padding:0.35rem 0.7rem;">
+                Download (PDF)
+              </a>
+            </div>
+            <div class="resource-item">
+              <div class="resource-left">
+                <div class="resource-title">Rhetoric & purpose questions</div>
+                <div class="resource-tag">Reading · Understanding author’s intent</div>
+              </div>
+              <a href="#" class="btn-outline" style="font-size:0.75rem;padding:0.35rem 0.7rem;">
+                Coming soon
+              </a>
+            </div>
+            <div class="resource-item">
+              <div class="resource-left">
+                <div class="resource-title">Grammar bootcamp: commas, clauses, & concision</div>
+                <div class="resource-tag">Writing · 20-question drill set</div>
+              </div>
+              <a href="#" class="btn-outline" style="font-size:0.75rem;padding:0.35rem 0.7rem;">
+                Coming soon
+              </a>
+            </div>
+          </div>
+
+          <p class="small-note">
+            As we work together, you’ll get access to updated, custom-built sets based on your needs.
+          </p>
+        </div>
       </div>
     </section>
-  </main>
+
+    <!-- PACKAGES -->
+    <section id="packages">
+      <h2>Packages & pricing</h2>
+      <p>
+        All sessions are 1:1 and online. The first 20-minute consult is always free so you can see
+        if AscendSAT is a good fit before committing.
+      </p>
+
+      <div class="package-grid">
+        <!-- Single -->
+        <div class="package">
+          <div class="package-title">Single session</div>
+          <div class="package-price">$40</div>
+          <div class="package-sub">1 × 60-minute session</div>
+          <ul>
+            <li>• Great for a quick tune-up or trying it out</li>
+            <li>• Choose Math or Reading/Writing focus</li>
+            <li>• Includes a small homework set</li>
+          </ul>
+          <div class="package-cta">
+            <!-- TODO: Replace href with your real Stripe payment link -->
+            <a href="https://buy.stripe.com/YOUR_SINGLE_SESSION_LINK"
+               class="btn" target="_blank" rel="noopener">
+              Pay for single session
+            </a>
+          </div>
+        </div>
+
+        <!-- Starter -->
+        <div class="package highlight">
+          <div class="package-title">Starter bundle</div>
+          <div class="package-price">$140</div>
+          <div class="package-sub">4 × 60-minute sessions</div>
+          <ul>
+            <li>• Best starting point for most students</li>
+            <li>• Full diagnostic + targeted practice</li>
+            <li>• Homework + feedback between sessions</li>
+          </ul>
+          <div class="package-cta">
+            <!-- TODO: Replace href with your real Stripe payment link -->
+            <a href="https://buy.stripe.com/YOUR_STARTER_BUNDLE_LINK"
+               class="btn" target="_blank" rel="noopener">
+              Pay for starter bundle
+            </a>
+            <div class="small-note">
+              Use within 8 weeks of first session. Flexible scheduling.
+            </div>
+          </div>
+        </div>
+
+        <!-- Intensive -->
+        <div class="package">
+          <div class="package-title">Intensive bundle</div>
+          <div class="package-price">$320</div>
+          <div class="package-sub">10 × 60-minute sessions</div>
+          <ul>
+            <li>• Ideal for students aiming 1400+ or 1500+</li>
+            <li>• Deep work across all sections</li>
+            <li>• Ongoing progress tracking + plan updates</li>
+          </ul>
+          <div class="package-cta">
+            <!-- TODO: Replace href with your real Stripe payment link -->
+            <a href="https://buy.stripe.com/YOUR_INTENSIVE_BUNDLE_LINK"
+               class="btn-outline" target="_blank" rel="noopener">
+              Pay for intensive bundle
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p class="small-note">
+        Payment is securely processed via Stripe. After payment, you’ll receive a confirmation email
+        and we’ll coordinate session times by email or text.
+      </p>
+    </section>
+
+    <!-- RESULTS / TESTIMONIALS -->
+    <section id="results">
+      <div class="grid-2">
+        <div>
+          <h2>Results & philosophy</h2>
+          <p>
+            The goal of AscendSAT is not just a higher score — it’s confidence under time pressure
+            and a clear understanding of how the test “thinks.” The best score gains come from fixing
+            your most frequent mistake patterns, not doing thousands of random questions.
+          </p>
+          <p style="margin-top:0.6rem;">
+            We combine official-style questions, targeted drills, and pattern recognition so you learn
+            to predict trap answers, manage time, and stay calm when a question looks unfamiliar.
+          </p>
+        </div>
+
+        <div>
+          <h2>What parents & students say</h2>
+          <div class="testimonials">
+            <div class="testimonial">
+              <div class="testimonial-quote">
+                “I finally understood why I kept missing the same type of algebra question.
+                The breakdowns actually stuck in my head during the test.”
+              </div>
+              <div class="testimonial-name">Student, 10th grade</div>
+              <div class="testimonial-tag">Math-focused · aiming 1300+</div>
+            </div>
+            <div class="testimonial">
+              <div class="testimonial-quote">
+                “The sessions were relaxed but focused. My kid actually didn’t hate SAT prep,
+                which is a miracle.”
+              </div>
+              <div class="testimonial-name">Parent</div>
+              <div class="testimonial-tag">4-session bundle</div>
+            </div>
+            <div class="testimonial">
+              <div class="testimonial-quote">
+                “What helped most was learning how to guess smart when I was stuck,
+                instead of freezing or wasting time.”
+              </div>
+              <div class="testimonial-name">Student, 11th grade</div>
+              <div class="testimonial-tag">Full test · next attempt scheduled</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2>FAQ</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-q">Who is AscendSAT for?</div>
+          <div class="faq-a">
+            AscendSAT is best for students aiming anywhere from 1100 to 1500+ who want a
+            strategy-based, 1:1 approach instead of a giant class. We work especially well
+            with students who already care about improving and are willing to do short,
+            focused homework between sessions.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How are sessions held?</div>
+          <div class="faq-a">
+            All sessions are online via Zoom or Google Meet with screen sharing and a
+            shared whiteboard. Students can join from a laptop or tablet with stable
+            internet and a quiet space.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do you offer just Math or just Reading/Writing?</div>
+          <div class="faq-a">
+            Yes. Some students choose Math-only or Reading/Writing-only plans, while others
+            do a mix. We’ll decide the best split based on your goals and current strengths.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What if we need to reschedule?</div>
+          <div class="faq-a">
+            Life happens. Sessions can be rescheduled with at least 24 hours’ notice. Same-day
+            cancellations count as used unless there’s an emergency — we just ask for clear communication.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="grid-2">
+        <div>
+          <h2>Book a free consult</h2>
+          <p>
+            Ready to start or just want to ask a few questions? Fill out this form and you’ll get
+            a reply within 24 hours with availability and next steps.
+          </p>
+          <p style="margin-top:0.5rem;font-size:0.86rem;color:var(--text-soft);">
+            You can also email directly at: <strong>your_email@example.com</strong> (swap this for your real email).
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <!-- Netlify form integration -->
+          <form name="ascendsat-contact" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="ascendsat-contact" />
+            <p style="display:none;">
+              <label>Don’t fill this out: <input name="bot-field" /></label>
+            </p>
+
+            <div class="form-row-2">
+              <div>
+                <label for="student-name">Student name</label>
+                <input id="student-name" name="student-name" type="text" required />
+              </div>
+              <div>
+                <label for="grade">Grade</label>
+                <input id="grade" name="grade" type="text" placeholder="e.g., 10th" required />
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div>
+                <label for="parent-email">Parent email</label>
+                <input id="parent-email" name="parent-email" type="email" required />
+              </div>
+              <div>
+                <label for="student-email">Student email (optional)</label>
+                <input id="student-email" name="student-email" type="email" />
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div>
+                <label for="target-score">Target score</label>
+                <input id="target-score" name="target-score" type="text" placeholder="e.g., 1400 → 1500+" />
+              </div>
+              <div>
+                <label for="test-date">Test date (if known)</label>
+                <input id="test-date" name="test-date" type="text" placeholder="e.g., March 2026" />
+              </div>
+            </div>
+
+            <div>
+              <label for="focus">Main focus</label>
+              <select id="focus" name="focus">
+                <option value="undecided">Undecided / full test</option>
+                <option value="math">Math</option>
+                <option value="reading-writing">Reading & Writing</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message">Anything I should know? (past scores, concerns, goals, etc.)</label>
+              <textarea id="message" name="message" placeholder="Example: Current practice tests around 1250, struggles with word problems and time pressure on Reading."></textarea>
+            </div>
+
+            <button type="submit" class="btn">Submit</button>
+            <div class="small-note">
+              By submitting, you’re just starting a conversation — there’s no commitment to purchase any package yet.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <footer>
-    © <span id="year"></span> JV SAT Tutoring · Online · Eastern Time (ET)
+    © <span id="year"></span> AscendSAT · Online SAT Tutoring · Eastern Time (ET)
   </footer>
 
   <script>
+    // dynamic year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function (e) {
+        const targetId = this.getAttribute("href");
+        if (targetId.length > 1 && document.querySelector(targetId)) {
+          e.preventDefault();
+          document.querySelector(targetId).scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
   </script>
 </body>
 </html>
